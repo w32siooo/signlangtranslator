@@ -3,16 +3,13 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Axios from "axios";
+import axios from "axios";
 const baseUrl = "http://localhost:3000";
 
 const ExternalApi = () => {
   const [message, setMessage] = useState("");
-  const [SearchString, setSearchString] = useState([
-    {
-      value: "",
-      id: 1,
-    },
-  ]);
+  const [StringToStore, setStringToStore] = useState("");
+  const [SearchString, setSearchString] = useState(null);
   const [AllSigns, setAllSigns] = useState([
     {
       url: "https://storage.googleapis.com/aadh/individial_signs/a.png",
@@ -38,6 +35,7 @@ const ExternalApi = () => {
     let str = val.target.value;
     //Replace spaces
     str = str.replace(/\s+/g, "");
+    setStringToStore(str);
     setSearchString(
       //Split string into array of single chars.
       str.split("").map((e) => {
@@ -49,17 +47,18 @@ const ExternalApi = () => {
   //useEffect that fires every time input is changed, and then fetches the image data from our JSON server.
   //useEffect(() => {}, [Searches]);
 
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, user } = useAuth0();
+  //Destructuring the name,picture and email form the user object.
+  const { name, picture, email } = user;
 
-  const callApi = async () => {
+  const dispatchTranslation = async () => {
     try {
-      const response = await fetch(`${serverUrl}/api/messages/public-message`);
-
-      const responseData = await response.json();
-
-      setMessage(responseData.message);
+      Axios.post(`${baseUrl}/searches`, {
+        value: StringToStore,
+        user: name,
+      });
     } catch (error) {
-      setMessage(error.message);
+      console.error(error);
     }
   };
 
@@ -79,27 +78,6 @@ const ExternalApi = () => {
     getAllSigns();
   }, []);
 
-  const callSecureApi = async () => {
-    try {
-      const token = await getAccessTokenSilently();
-
-      const response = await fetch(
-        `${serverUrl}/api/messages/protected-message`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const responseData = await response.json();
-
-      setMessage(responseData.message);
-    } catch (error) {
-      setMessage(error.message);
-    }
-  };
-
   return (
     <div className="container">
       <h1>External API</h1>
@@ -116,22 +94,19 @@ const ExternalApi = () => {
         <input
           type="text"
           placeholder="Search for a word!"
-          maxLength="10"
+          maxLength="40"
           onChange={getData}
         ></input>
 
-        <button type="button" className="btn btn-primary" onClick={callApi}>
-          Get Public Message
-        </button>
         <button
           type="button"
           className="btn btn-primary"
-          onClick={callSecureApi}
+          onClick={dispatchTranslation}
         >
-          Get Protected Message
+          Save Search
         </button>
       </div>
-      {message && (
+      {SearchString && (
         <div className="mt-5">
           <h6 className="muted">Result</h6>
           <div className="container-fluid">
@@ -148,7 +123,7 @@ const ExternalApi = () => {
                           src={AllSigns[index].url}
                           alt="React logo"
                           width="120"
-                          key={AllSigns[index].key}
+                          key={element.id}
                         />
                       );
                     }
