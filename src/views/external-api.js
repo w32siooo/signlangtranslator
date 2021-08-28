@@ -45,7 +45,6 @@ const ExternalApi = () => {
   }
 
   //useEffect that fires every time input is changed, and then fetches the image data from our JSON server.
-  //useEffect(() => {}, [Searches]);
 
   const { getAccessTokenSilently, user } = useAuth0();
   //Destructuring the name,picture and email form the user object.
@@ -114,6 +113,7 @@ const ExternalApi = () => {
               <code className="col-12 text-light bg-dark p-4">
                 {" "}
                 {SearchString.map((element) => {
+                  //Iterate through our searchtring and find a match with a key, from the allsigns object.
                   for (let index = 0; index < AllSigns.length; index++) {
                     if (AllSigns[index].key === element.value) {
                       console.log(AllSigns[index].key, element.value);

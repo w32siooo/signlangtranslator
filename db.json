@@ -131,50 +131,5 @@
       "id": 26
     }
   ],
-  "searches": [
-    {
-      "id": 1,
-      "value": "some dd"
-    },
-    {
-      "value": "potatos",
-      "id": 2
-    },
-    {
-      "value": "burgir",
-      "id": 3
-    },
-    {
-      "value": "[object Object][object Object][object Object][object Object]",
-      "id": 4
-    },
-    {
-      "value": "[{\"value\":\"c\",\"id\":\"Ufea8\"},{\"value\":\"o\",\"id\":\"AlH8K\"},{\"value\":\"l\",\"id\":\"V3XVH\"},{\"value\":\"a\",\"id\":\"mfxR5\"}]",
-      "id": 5
-    },
-    {
-      "value": [
-        "s",
-        "t",
-        "r",
-        "i",
-        "n",
-        "g"
-      ],
-      "id": 6
-    },
-    {
-      "value": "pizzah",
-      "id": 7
-    },
-    {
-      "value": "burgir",
-      "id": 8
-    },
-    {
-      "value": "hey",
-      "user": "creeco@gmail.com",
-      "id": 9
-    }
-  ]
+  "searches": []
 }

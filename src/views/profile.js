@@ -10,24 +10,31 @@ const Profile = () => {
   const { user } = useAuth0();
   //Destructuring the name,picture and email form the user object.
   const { name, picture, email } = user;
+  //state to store all searches made by the user in question
 
-  const [Searches, setSearches] = useState("");
-
-  useEffect(() => {
-    async function fetchMyApi() {
-      try {
-        await Axios.get(`${baseUrl}/posts?user=${name}`).then((Response) => {
-          const searches = Response.data.map((data) => {
-            return data.title;
-          });
-          setSearches(searches);
+  const [Searches, setSearches] = useState([{ value: "hello", id: 1 }]);
+  async function fetchMyApi() {
+    try {
+      await Axios.get(`${baseUrl}/searches?user=${name}`).then((Response) => {
+        const searches = Response.data.map((data) => {
+          return { value: data.value, id: data.id };
         });
-      } catch (error) {
-        console.error(error);
-      }
+        setSearches(searches);
+      });
+    } catch (error) {
+      console.error(error);
     }
+  }
+  useEffect(() => {
     fetchMyApi();
   }, [name]);
+
+  const deleteSearch = async (idToDelete) => {
+    try {
+      await Axios.delete(`${baseUrl}/searches/${idToDelete}`);
+      await fetchMyApi();
+    } catch (error) {}
+  };
 
   return (
     <div>
@@ -42,7 +49,20 @@ const Profile = () => {
         <div className="col-md text-center text-md-left">
           <h2>{name}</h2>
           <p className="lead text-muted">{email}</p>
-          List of all searches: {Searches}
+          List of all searches:{" "}
+          {Searches.map((e) => {
+            return (
+              <div className="searchCard">
+                Search string: {e.value}
+                <br />
+                Search Id {e.id}{" "}
+                <button onClick={() => deleteSearch(e.id)}>
+                  {" "}
+                  Delete Search{" "}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="row">
