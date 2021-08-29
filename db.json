@@ -133,9 +133,23 @@
   ],
   "searches": [
     {
-      "value": "dd",
-      "user": "creeco@gmail.com",
-      "id": 1
+      "value": "hehe",
+      "deleted": true,
+      "id": 2
+    },
+    {
+      "deleted": true,
+      "somedata": "please dont delete me",
+      "id": 3
+    },
+    {
+      "deleted": true,
+      "id": 4
+    },
+    {
+      "value": "h",
+      "deleted": true,
+      "id": 5
     }
   ]
 }

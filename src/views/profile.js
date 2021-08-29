@@ -17,7 +17,7 @@ const Profile = () => {
     try {
       await Axios.get(`${baseUrl}/searches?user=${name}`).then((Response) => {
         const searches = Response.data.map((data) => {
-          return { value: data.value, id: data.id };
+          return { value: data.value, id: data.id, deleted: data.deleted };
         });
         setSearches(searches);
       });
@@ -31,7 +31,7 @@ const Profile = () => {
 
   const deleteSearch = async (idToDelete) => {
     try {
-      await Axios.delete(`${baseUrl}/searches/${idToDelete}`);
+      await Axios.patch(`${baseUrl}/searches/${idToDelete}`, { deleted: true });
       await fetchMyApi();
     } catch (error) {}
   };
@@ -51,17 +51,21 @@ const Profile = () => {
           <p className="lead text-muted">{email}</p>
           List of all searches:{" "}
           {Searches.map((e) => {
-            return (
-              <div className="searchCard">
-                Search string: {e.value}
-                <br />
-                Search Id {e.id}{" "}
-                <button onClick={() => deleteSearch(e.id)}>
-                  {" "}
-                  Delete Search{" "}
-                </button>
-              </div>
-            );
+            if (e.deleted) {
+              return <div></div>;
+            } else {
+              return (
+                <div className="searchCard">
+                  Search string: {e.value}
+                  <br />
+                  Search Id {e.id}{" "}
+                  <button onClick={() => deleteSearch(e.id)}>
+                    {" "}
+                    Delete Search{" "}
+                  </button>
+                </div>
+              );
+            }
           })}
         </div>
       </div>

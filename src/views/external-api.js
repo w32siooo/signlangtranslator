@@ -2,19 +2,19 @@
 
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllImages } from "../store/actions";
-
-const baseUrl = "http://localhost:3000";
+import { getAllImages, saveSearch } from "../store/actions";
 
 const ExternalApi = () => {
-  const [message, setMessage] = useState("");
   const [StringToStore, setStringToStore] = useState("");
   const [SearchString, setSearchString] = useState(null);
   const dispatch = useDispatch();
   const AllSigns = useSelector((state) => state.saveImages);
-
+  //useEffect that fires every time input is changed, and then fetches the image data from our JSON server.
+  //get username from auth0 hook
+  const { user } = useAuth0();
+  //Destructuring the name,picture and email form the user object.
+  const { name, picture, email } = user;
   //get all images
   useEffect(() => {
     dispatch(getAllImages());
@@ -32,8 +32,7 @@ const ExternalApi = () => {
     return result;
   }
 
-  const serverUrl = process.env.REACT_APP_SERVER_URL;
-  function getData(val) {
+  function sendTextInput(val) {
     //Get input field value
     let str = val.target.value;
     //Replace spaces
@@ -47,21 +46,8 @@ const ExternalApi = () => {
     );
   }
 
-  //useEffect that fires every time input is changed, and then fetches the image data from our JSON server.
-
-  const { getAccessTokenSilently, user } = useAuth0();
-  //Destructuring the name,picture and email form the user object.
-  const { name, picture, email } = user;
-
-  const dispatchTranslation = async () => {
-    try {
-      Axios.post(`${baseUrl}/searches`, {
-        value: StringToStore,
-        user: name,
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  const dispatchTranslation = () => {
+    dispatch(saveSearch({ value: StringToStore, user: name, deleted: false }));
   };
 
   return (
@@ -72,6 +58,7 @@ const ExternalApi = () => {
         access token in its authorization header. The API server will validate
         the access token using the Auth0 Audience value.
       </p>
+
       <div
         className="btn-group mt-5"
         role="group"
@@ -81,7 +68,7 @@ const ExternalApi = () => {
           type="text"
           placeholder="Search for a word!"
           maxLength="40"
-          onChange={getData}
+          onChange={sendTextInput}
         ></input>
 
         <button
@@ -103,7 +90,6 @@ const ExternalApi = () => {
                   //Iterate through our searchtring and find a match with a key, from the allsigns object.
                   for (let index = 0; index < AllSigns.length; index++) {
                     if (AllSigns[index].key === element.value) {
-                      console.log(AllSigns[index].key, element.value);
                       return (
                         <img
                           className="mb-3 app-logo"
