@@ -3,7 +3,6 @@ import imagesReducer from "./imagesReducer";
 import saveAllImagesReducer from "./saveImagesReducer";
 const allReducers = combineReducers({
   saveImages: saveAllImagesReducer,
-
   getImages: imagesReducer,
 });
 

@@ -7,4 +7,6 @@ const imagesReducer = (state = false, action) => {
   }
 };
 
+
+
 export default imagesReducer;
