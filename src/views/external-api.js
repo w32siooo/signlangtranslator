@@ -3,19 +3,22 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Axios from "axios";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllImages } from "../store/actions";
+
 const baseUrl = "http://localhost:3000";
 
 const ExternalApi = () => {
   const [message, setMessage] = useState("");
   const [StringToStore, setStringToStore] = useState("");
   const [SearchString, setSearchString] = useState(null);
-  const [AllSigns, setAllSigns] = useState([
-    {
-      url: "https://storage.googleapis.com/aadh/individial_signs/a.png",
-      key: "a",
-    },
-  ]);
+  const dispatch = useDispatch();
+  const AllSigns = useSelector((state) => state.saveImages);
+
+  //get all images
+  useEffect(() => {
+    dispatch(getAllImages());
+  }, []);
 
   //Create a unique ID because react needs it.
   function makeid(length) {
@@ -60,22 +63,6 @@ const ExternalApi = () => {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    const getAllSigns = async () => {
-      try {
-        await Axios.get(`${baseUrl}/posts`).then((Response) => {
-          const returnedData = Response.data.map((data) => {
-            return { url: data.url, key: data.key };
-          });
-          setAllSigns(returnedData);
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getAllSigns();
-  }, []);
 
   return (
     <div className="container">
