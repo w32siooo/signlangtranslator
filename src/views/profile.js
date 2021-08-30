@@ -33,12 +33,7 @@ const Profile = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
-  const deleteSearch = async (idToDelete) => {
-    try {
-      await Axios.patch(`${baseUrl}/searches/${idToDelete}`, { deleted: true });
-      await fetchMyApi();
-    } catch (error) {}
-  };
+
 
   return (
     <div>
@@ -59,13 +54,13 @@ const Profile = () => {
         <pre className="col-12 text-light bg-dark p-4">
           {/*JSON.stringify(user, null, 2)*/}
           List of all translations:
-          {Searches.map((e) => {
+          {Searches.map((e,index) => {
             if (e.deleted) {
               return null;
             } else {
               return (
-                <div className="searchCard">
-                  <CardComp e={e} deleteSearch={deleteSearch} />
+                <div className="searchCard" id={index}>
+                  <CardComp e={e}/>
                 </div>
               );
             }

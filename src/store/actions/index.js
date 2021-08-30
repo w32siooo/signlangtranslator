@@ -1,6 +1,7 @@
 const ACTION_GET_ALL_IMAGES = "GET_ALL_IMAGES";
 const ACTION_SAVE_ALL_IMAGES = "SAVE_ALL_IMAGES";
 const ACTION_SAVE_SEARCH = "SAVE_SEARCH";
+const ACTION_MARK_SEARCH_DELETED = "HIDE_SEARCH"
 
 //Get's all images through a middleware which dispatches save all images.
 export const getAllImages = () => {
@@ -23,3 +24,10 @@ export const saveSearch = (search) => {
     payload: search,
   };
 };
+
+export const markSearchDel = (searchToMark)=>{
+  return {
+    type: ACTION_MARK_SEARCH_DELETED,
+    payload: searchToMark
+  }
+}
