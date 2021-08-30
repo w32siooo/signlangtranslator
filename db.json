@@ -250,13 +250,13 @@
     {
       "value": "ehe",
       "user": "creeco@gmail.com",
-      "deleted": false,
+      "deleted": true,
       "id": 22
     },
     {
       "value": "save",
       "user": "creeco@gmail.com",
-      "deleted": false,
+      "deleted": true,
       "id": 23
     }
   ]
