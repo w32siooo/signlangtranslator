@@ -1,4 +1,3 @@
-// src/components/nav-bar.js
 
 import React from "react";
 
@@ -10,7 +9,7 @@ const NavBar = () => {
     <div className="nav-container mb-3">
       <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container">
-          <div className="navbar-brand logo" />
+          {/*logo could go here */}
           <MainNav />
           <AuthNav />
         </div>

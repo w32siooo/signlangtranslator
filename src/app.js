@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { NavBar, Loading } from "./components";
-import { Home, Profile, ExternalApi } from "./views";
+import { Home, Profile, Translate } from "./views";
 import ProtectedRoute from "./auth/protected-route";
 
 import "./app.css";
@@ -24,7 +24,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <ProtectedRoute path="/profile" component={Profile} />
-          <ProtectedRoute path="/external-api" component={ExternalApi} />
+          <ProtectedRoute path="/translate" component={Translate} />
         </Switch>
       </div>
       {/* Could put a footer here */}

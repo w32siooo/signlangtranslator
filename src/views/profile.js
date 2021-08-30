@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 
 import { useAuth0 } from "@auth0/auth0-react";
+import CardComp from "../components/card-comp";
 const baseUrl = "http://localhost:3000";
 const Profile = () => {
   //Auth0 hook where we get the user object from.
@@ -13,6 +14,7 @@ const Profile = () => {
   //state to store all searches made by the user in question
 
   const [Searches, setSearches] = useState([{ value: "hello", id: 1 }]);
+  
   async function fetchMyApi() {
     try {
       await Axios.get(`${baseUrl}/searches?user=${name}`).then((Response) => {
@@ -25,8 +27,10 @@ const Profile = () => {
       console.error(error);
     }
   }
+
   useEffect(() => {
     fetchMyApi();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
   const deleteSearch = async (idToDelete) => {
@@ -49,29 +53,23 @@ const Profile = () => {
         <div className="col-md text-center text-md-left">
           <h2>{name}</h2>
           <p className="lead text-muted">{email}</p>
-          List of all searches:{" "}
-          {Searches.map((e) => {
-            if (e.deleted) {
-              return <div></div>;
-            } else {
-              return (
-                <div className="searchCard">
-                  Search string: {e.value}
-                  <br />
-                  Search Id {e.id}{" "}
-                  <button onClick={() => deleteSearch(e.id)}>
-                    {" "}
-                    Delete Search{" "}
-                  </button>
-                </div>
-              );
-            }
-          })}
         </div>
       </div>
       <div className="row">
         <pre className="col-12 text-light bg-dark p-4">
-          {JSON.stringify(user, null, 2)}
+          {/*JSON.stringify(user, null, 2)*/}
+          List of all translations:
+          {Searches.map((e) => {
+            if (e.deleted) {
+              return null;
+            } else {
+              return (
+                <div className="searchCard">
+                  <CardComp e={e} deleteSearch={deleteSearch} />
+                </div>
+              );
+            }
+          })}
         </pre>
       </div>
     </div>

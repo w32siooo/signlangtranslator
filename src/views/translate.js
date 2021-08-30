@@ -14,11 +14,11 @@ const ExternalApi = () => {
   //get username from auth0 hook
   const { user } = useAuth0();
   //Destructuring the name,picture and email form the user object.
-  const { name, picture, email } = user;
+  const { name } = user;
   //get all images
   useEffect(() => {
     dispatch(getAllImages());
-  }, []);
+  }, [dispatch]);
 
   //Create a unique ID because react needs it.
   function makeid(length) {
@@ -52,11 +52,9 @@ const ExternalApi = () => {
 
   return (
     <div className="container">
-      <h1>External API</h1>
+      <h1>Translate</h1>
       <p>
-        Use these buttons to call an external API. The protected API call has an
-        access token in its authorization header. The API server will validate
-        the access token using the Auth0 Audience value.
+       Type whatever you want to translate from US English to American sign language. 
       </p>
 
       <div
