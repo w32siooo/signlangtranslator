@@ -1,12 +1,11 @@
 import React, { Fragment } from "react";
 
-import { CenterHome, HomeContent } from "../components";
+import { CenterHome } from "../components";
 
 const Home = () => (
   <Fragment>
     <CenterHome />
     <hr />
-    <HomeContent />
   </Fragment>
 );
 

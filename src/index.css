@@ -7,6 +7,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: scroll;
+  background-color: #212529;
+  color: blueviolet;
 }
 
 code {
@@ -25,6 +27,10 @@ code {
 
 .next-steps .fa-link {
   margin-right: 5px;
+}
+
+.navbar {
+  background-color: #212529;
 }
 
 /* Fix for use only flexbox in content area */
@@ -48,7 +54,6 @@ code {
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: white;
   top: 0;
   bottom: 0;
   left: 0;
@@ -72,8 +77,4 @@ code {
   height: 100px;
   margin: 0 auto;
   width: 100px;
-}
-
-.hero .app-logo {
-  max-width: 10.5rem;
 }

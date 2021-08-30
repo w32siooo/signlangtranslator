@@ -1,14 +1,12 @@
 // src/views/profile.js
 
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import CardComp from "../components/card-comp";
 import { fetchAllSearches } from "../store/actions";
 import { useSelector } from "react-redux";
 
-const baseUrl = "http://localhost:3000";
 const Profile = () => {
   const dispatch = useDispatch();
   //Auth0 hook where we get the user object from.

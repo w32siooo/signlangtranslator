@@ -1,4 +1,5 @@
 import axios from "axios";
+import { fetchAllSearches } from "../actions";
 const baseUrl = "http://localhost:3000";
 
 export const markSearchDeleted = ({ dispatch }) => (next) => (action) => {
@@ -6,13 +7,14 @@ export const markSearchDeleted = ({ dispatch }) => (next) => (action) => {
 
   if (action.type === "HIDE_SEARCH") {
     const deleteSearch = async (idToDelete) => {
-        try {
-            console.log(action.payload)
-          await axios.patch(`${baseUrl}/searches/${action.payload}`, { deleted: true });
-        } catch (error) {}
-      };
-    
-      deleteSearch();
+      try {
+        await axios.patch(`${baseUrl}/searches/${action.payload.id}`, {
+          deleted: true,
+        });
+      } catch (error) {}
+    };
+    deleteSearch();
+    dispatch(fetchAllSearches(action.payload.name));
   }
 };
 

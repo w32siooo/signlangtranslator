@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllImages, saveSearch } from "../store/actions";
 
 const ExternalApi = () => {
+  const loggedLogo = "https://i.imgur.com/Pbw6V8k.png";
   const [StringToStore, setStringToStore] = useState("");
   const [SearchString, setSearchString] = useState(null);
   const dispatch = useDispatch();
@@ -52,9 +53,16 @@ const ExternalApi = () => {
 
   return (
     <div className="container">
+      <img
+        className="mb-3 app-logo"
+        src={loggedLogo}
+        alt="React logo"
+        width="300"
+      />
       <h1>Translate</h1>
       <p>
-       Type whatever you want to translate from US English to American sign language. 
+        Type whatever you want to translate from US English to American sign
+        language.
       </p>
 
       <div

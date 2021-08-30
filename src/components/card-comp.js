@@ -6,11 +6,12 @@ const CardComp = (props) => {
   const dispatch = useDispatch();
   return (
     <div>
-      Search string: {props.e.value} Search Id {props.e.id}
+      <b>Search string:</b> "{props.e.value}" <b>ID:</b> "{props.e.id}"
       <button
         onClick={() => {
-          dispatch(markSearchDel(props.e.id))
+          dispatch(markSearchDel(props.e));
         }}
+        className="btn btn-primary"
       >
         Delete Search
       </button>
