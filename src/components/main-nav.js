@@ -25,7 +25,7 @@ const MainNav = () => (
       className="nav-link"
       activeClassName="router-link-exact-active"
     >
-      translate
+      Translate
     </NavLink>
   </div>
 );
