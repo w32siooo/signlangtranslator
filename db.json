@@ -304,19 +304,19 @@
     {
       "value": "hey",
       "user": "creeco@gmail.com",
-      "deleted": false,
+      "deleted": true,
       "id": 31
     },
     {
       "value": "yp",
       "user": "creeco@gmail.com",
-      "deleted": false,
+      "deleted": true,
       "id": 32
     },
     {
       "value": "hellohowareyoumydarlingthisisat",
       "user": "creeco@gmail.com",
-      "deleted": false,
+      "deleted": true,
       "id": 33
     }
   ]

@@ -14,7 +14,6 @@ export const markSearchDeleted = ({ dispatch }) => (next) => (action) => {
       } catch (error) {}
     };
     deleteSearch();
-    dispatch(fetchAllSearches(action.payload.name));
   }
 };
 
