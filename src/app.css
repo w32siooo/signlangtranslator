@@ -16,10 +16,8 @@
     margin-bottom: 0;
   }
 }
-.navbar {
-  background-color: #212529;
-}
-.inline-class{
+
+.inline-class {
   display: inline;
 }
 
@@ -38,4 +36,11 @@
 
 .result-block-container .result-block {
   opacity: 1;
+}
+
+.text-my-own-color {
+  color: blueviolet !important;
+}
+.text-my-own-color:hover, .text-my-own-color:active , .text-my-own-color:focus{
+  color: orangered !important; 
 }

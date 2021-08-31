@@ -6,7 +6,7 @@ import AuthNav from "./auth-nav";
 
 const NavBar = () => {
   return (
-    <div className="nav-container mb-3 justify-content-center">
+    <div className="nav-container mb-3 mx-auto">
       <nav className="navbar navbar-expand-md">
         <div className="container">
           {/*logo could go here */}
