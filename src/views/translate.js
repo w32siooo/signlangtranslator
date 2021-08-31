@@ -52,7 +52,7 @@ const ExternalApi = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container text-center hero">
       <img
         className="mb-3 app-logo"
         src={loggedLogo}
@@ -97,13 +97,16 @@ const ExternalApi = () => {
                   for (let index = 0; index < AllSigns.length; index++) {
                     if (AllSigns[index].key === element.value) {
                       return (
-                        <img
-                          className="mb-3 app-logo"
-                          src={AllSigns[index].url}
-                          alt="React logo"
-                          width="120"
-                          key={element.id}
-                        />
+                        <div className="inline-class">
+                          {element.value}
+                          <img
+                            className="mb-3 app-logo"
+                            src={AllSigns[index].url}
+                            alt="React logo"
+                            width="120"
+                            key={element.id}
+                          />
+                        </div>
                       );
                     }
                   }

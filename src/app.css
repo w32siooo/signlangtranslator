@@ -19,6 +19,9 @@
 .navbar {
   background-color: #212529;
 }
+.inline-class{
+  display: inline;
+}
 
 .spinner {
   position: absolute;
