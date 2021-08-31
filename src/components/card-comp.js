@@ -6,7 +6,6 @@ const CardComp = (props) => {
   const dispatch = useDispatch();
   const onButtonClick = () =>{
     dispatch(markSearchDel(props.e))
-    //window.location.reload();
   }
   return (
     <div>
