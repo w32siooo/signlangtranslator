@@ -1,6 +1,4 @@
-// src/views/profile.js
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import CardComp from "../components/card-comp";
@@ -24,8 +22,9 @@ const Profile = () => {
   }, [name]);
 
   return (
-    <div>
+    <div className="text-center hero">
       <div className="row align-items-center profile-header">
+        
         <div className="col-md-2 mb-3">
           <img
             src={picture}
@@ -46,8 +45,8 @@ const Profile = () => {
               return null;
             } else {
               return (
-                <div className="searchCard" id={index}>
-                  <CardComp e={e} id={index} />
+                <div className="searchCard" id={index} key={index}>
+                  <CardComp e={e}/>
                 </div>
               );
             }

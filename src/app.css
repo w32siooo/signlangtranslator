@@ -41,6 +41,9 @@
 .text-my-own-color {
   color: blueviolet !important;
 }
-.text-my-own-color:hover, .text-my-own-color:active , .text-my-own-color:focus{
+.text-my-own-color:hover, .text-my-own-color:focus{
   color: orangered !important; 
+}
+.text-my-own-color:active{
+  color: red !important;
 }

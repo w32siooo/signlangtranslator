@@ -1,5 +1,3 @@
-// src/components/logout-button.js
-
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 

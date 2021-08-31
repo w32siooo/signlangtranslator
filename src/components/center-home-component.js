@@ -8,11 +8,7 @@ const CenterHome = () => {
   const { isAuthenticated } = useAuth0();
   return (
     <div className="text-center hero">
-      <h1 className="mb-4">Lost in translation app.</h1>
-      <h3>
-        This is an application that let's you convert english words into their
-        sign value equivalents.
-      </h3>
+
       {isAuthenticated ? (
         <img
           className="mb-3 app-logo"
@@ -23,6 +19,12 @@ const CenterHome = () => {
       ) : (
         <img className="mb-3 app-logo" src={logo} alt="Robot" width="300" />
       )}
+
+<h1 className="mb-4">Lost in translation app.</h1>
+      <h3>
+        This is an application that let's you convert english words into their
+        sign value equivalents.
+      </h3>
 
       {isAuthenticated ? (
         <h5>
