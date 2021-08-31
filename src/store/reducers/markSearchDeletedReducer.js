@@ -1,9 +1,9 @@
-const initState = { url: "data.url", key: "data.key" };
+const initState = 0;
 
 const markSearchDeletedReducer = (state = initState, action) => {
   switch (action.type) {
     case "HIDE_SEARCH":
-      return action.payload;
+      return state = state+1;
     default:
       return state;
   }

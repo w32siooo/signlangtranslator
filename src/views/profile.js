@@ -11,6 +11,8 @@ const Profile = () => {
 
   const Searches = useSelector((state) => state.saveAllSearches);
 
+  const deleted = useSelector((state)=>state.hideSearch)
+
   const { user } = useAuth0();
   //Destructuring the name,picture and email form the user object.
   const { name, picture, email } = user;
@@ -33,11 +35,12 @@ const Profile = () => {
           />
         </div>
         <div className="col-md text-center text-md-left">
-          <h2>{name}</h2>
+          <h2>{name}, so many have been deleted{deleted}</h2>
           <p className="lead text-muted">{email}</p>
         </div>
       </div>
       <div className="row">
+      
         <pre className="col-12 text-light bg-dark p-4">
           List of all translations:
           {Searches.map((e, index) => {
