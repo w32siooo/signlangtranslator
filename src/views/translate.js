@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllImages, saveSearch } from "../store/actions";
 
-const ExternalApi = () => {
+const Translate = () => {
   const loggedLogo = "https://i.imgur.com/Pbw6V8k.png";
   const [StringToStore, setStringToStore] = useState("");
   const [SearchString, setSearchString] = useState(null);
@@ -33,6 +33,7 @@ const ExternalApi = () => {
     return result;
   }
 
+  //Since this is only relevant for the current component and it's children, i'm managing state locally.
   function sendTextInput(val) {
     //Get input field value
     let str = val.target.value;
@@ -53,14 +54,13 @@ const ExternalApi = () => {
 
   return (
     <div className="container text-center hero">
-
       <img
         className="mb-3 app-logo"
         src={loggedLogo}
         alt="React logo"
         width="300"
       />
-                  <h1>Translate</h1>
+      <h1>Translate</h1>
 
       <p>
         Type whatever you want to translate from US English to American sign
@@ -93,7 +93,6 @@ const ExternalApi = () => {
           <div className="container-fluid">
             <div className="row">
               <code className="col-12 text-light bg-dark p-4">
-                {" "}
                 {SearchString.map((element) => {
                   //Iterate through our searchtring and find a match with a key, from the allsigns object.
                   for (let index = 0; index < AllSigns.length; index++) {
@@ -121,4 +120,4 @@ const ExternalApi = () => {
   );
 };
 
-export default ExternalApi;
+export default Translate;
